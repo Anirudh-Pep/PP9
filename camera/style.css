@@ -108,6 +108,7 @@ video {
   position: fixed;
   top: 5vh;
   right: 20px;
+  z-index: 3;
 }
 
 .zoom-container div {

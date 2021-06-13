@@ -52,6 +52,8 @@ recordBtn.addEventListener("click", function (e) {
     mediaRecorder.start();
     appliedFilter = ""; //color remove
     removeFilter(); //ui se remove
+    currZoom = 1;
+    video.style.transform = `scale(${currZoom})`;
     isRecording = true;
     recDiv.classList.add("record-animation");
   }
@@ -70,6 +72,15 @@ capBtn.addEventListener("click", function () {
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
   let tool = canvas.getContext("2d");
+
+  //origin shift
+
+  tool.translate(canvas.width / 2, canvas.height / 2);
+
+  tool.scale(currZoom, currZoom);
+
+  tool.translate(-canvas.width / 2, -canvas.height / 2);
+
   tool.drawImage(video, 0, 0);
 
   if (appliedFilter) {
